@@ -1,5 +1,6 @@
 const openMessageBtn = document.getElementById("openMessage");
-const heartBurstBtn = document.getElementById("heartBurst");
+const noBtn = document.getElementById("noBtn");
+const choiceArea = document.getElementById("choiceArea");
 const messageSection = document.getElementById("messageSection");
 const memorySection = document.getElementById("memorySection");
 const typedLines = document.getElementById("typedLines");
@@ -40,11 +41,13 @@ openMessageBtn.addEventListener("click", async () => {
   }, 500);
 });
 
-heartBurstBtn.addEventListener("click", () => {
-  for (let i = 0; i < 14; i += 1) {
-    spawnHeart({ burst: true });
-  }
-});
+if (noBtn && choiceArea) {
+  noBtn.addEventListener("mouseenter", moveNoButton);
+  noBtn.addEventListener("focus", moveNoButton);
+  noBtn.addEventListener("click", moveNoButton);
+  noBtn.addEventListener("pointerdown", moveNoButton);
+  noBtn.addEventListener("touchstart", moveNoButton, { passive: false });
+}
 
 memoryCards.forEach((card) => {
   card.addEventListener("click", () => {
@@ -76,6 +79,34 @@ function closeLightbox() {
   lightbox.classList.add("hidden");
   lightboxImage.src = "";
   lightboxCaption.textContent = "";
+}
+
+function moveNoButton(event) {
+  event.preventDefault();
+  if (!noBtn || !choiceArea) return;
+
+  const areaRect = choiceArea.getBoundingClientRect();
+  const btnRect = noBtn.getBoundingClientRect();
+  const padding = 8;
+  const minX = padding + btnRect.width / 2;
+  const maxX = areaRect.width - padding - btnRect.width / 2;
+  const minY = padding + btnRect.height / 2;
+  const maxY = areaRect.height - padding - btnRect.height / 2;
+
+  let nextX = randomBetween(minX, maxX);
+  let nextY = randomBetween(minY, maxY);
+  const yesX = areaRect.width * 0.25;
+  const yesY = areaRect.height * 0.5;
+  let retries = 0;
+
+  while (Math.hypot(nextX - yesX, nextY - yesY) < btnRect.width && retries < 12) {
+    nextX = randomBetween(minX, maxX);
+    nextY = randomBetween(minY, maxY);
+    retries += 1;
+  }
+
+  noBtn.style.left = `${nextX}px`;
+  noBtn.style.top = `${nextY}px`;
 }
 
 function typeLine(text) {
@@ -126,6 +157,11 @@ function spawnHeart({ burst = false } = {}) {
 
 function wait(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function randomBetween(min, max) {
+  if (max <= min) return min;
+  return Math.random() * (max - min) + min;
 }
 
 setInterval(() => spawnHeart(), 360);
