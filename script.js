@@ -23,6 +23,7 @@ let started = false;
 openMessageBtn.addEventListener("click", async () => {
   if (started) return;
   started = true;
+  launchLoveExplosion();
 
   messageSection.classList.remove("hidden");
   messageSection.classList.add("fade-in");
@@ -133,16 +134,30 @@ function revealMemoryCards() {
   });
 }
 
-function spawnHeart({ burst = false } = {}) {
+function launchLoveExplosion() {
+  for (let i = 0; i < 44; i += 1) {
+    setTimeout(() => {
+      spawnHeart({ burst: true, xRange: [26, 74], bottom: "20vh" });
+    }, i * 24);
+  }
+
+  for (let i = 0; i < 34; i += 1) {
+    setTimeout(() => {
+      spawnHeart({ burst: true, xRange: [6, 94], bottom: "8vh" });
+    }, 220 + i * 32);
+  }
+}
+
+function spawnHeart({ burst = false, xRange = null, bottom = null } = {}) {
   const heart = document.createElement("span");
   heart.className = "heart";
 
-  const x = burst ? 35 + Math.random() * 30 : Math.random() * 100;
+  const x = xRange ? randomBetween(xRange[0], xRange[1]) : burst ? 35 + Math.random() * 30 : Math.random() * 100;
   const life = burst ? 2200 + Math.random() * 800 : 4200 + Math.random() * 2600;
   const size = burst ? 10 + Math.random() * 12 : 8 + Math.random() * 10;
 
   heart.style.left = `${x}vw`;
-  heart.style.bottom = burst ? "26vh" : "-24px";
+  heart.style.bottom = bottom || (burst ? "26vh" : "-24px");
   heart.style.width = `${size}px`;
   heart.style.height = `${size}px`;
   heart.style.animationDuration = `${life}ms`;
