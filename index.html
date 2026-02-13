@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>For Pranavati</title>
+    <meta name="description" content="A special Valentine's surprise for Pranavati." />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Happy Valentine's Day, Pranavati" />
+    <meta property="og:description" content="A small surprise made with love." />
+    <meta property="og:image" content="https://YOUR_GITHUB_USERNAME.github.io/valentine-pranavati/photo2.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Happy Valentine's Day, Pranavati" />
+    <meta name="twitter:description" content="A small surprise made with love." />
+    <meta name="twitter:image" content="https://YOUR_GITHUB_USERNAME.github.io/valentine-pranavati/photo2.jpg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow glow-one" aria-hidden="true"></div>
+    <div class="bg-glow glow-two" aria-hidden="true"></div>
+    <div id="floating-hearts" aria-hidden="true"></div>
+
+    <main class="shell">
+      <section class="hero card fade-in">
+        <p class="eyebrow">A Small Surprise</p>
+        <h1>Happy Valentine's Day, Pranavati</h1>
+        <p class="intro">
+          Every day with you is my favorite day. This little page is only for you.
+        </p>
+        <div class="actions">
+          <button id="openMessage" class="btn btn-primary">Open My Message</button>
+          <button id="heartBurst" class="btn btn-ghost">Send Love</button>
+        </div>
+      </section>
+
+      <section id="messageSection" class="card message hidden">
+        <h2>My Note To You</h2>
+        <div id="typedLines" class="typed-lines"></div>
+
+        <div class="reasons">
+          <article class="reason-card stagger">
+            <h3>Your smile</h3>
+            <p>It turns normal moments into beautiful memories.</p>
+          </article>
+          <article class="reason-card stagger">
+            <h3>Your heart</h3>
+            <p>Your kindness makes home feel warm no matter where we are.</p>
+          </article>
+          <article class="reason-card stagger">
+            <h3>Your strength</h3>
+            <p>You inspire me to be better every single day.</p>
+          </article>
+        </div>
+
+        <p class="signature">Forever yours.</p>
+      </section>
+
+      <section id="memorySection" class="card memories hidden">
+        <h2>Our Beautiful Memories</h2>
+        <p class="memory-intro">Tap any photo to see it in full view.</p>
+
+        <div class="memory-grid">
+          <figure class="memory-tile memory-stagger" data-caption="Your smile + my peace = my favorite moment.">
+            <img src="photo1.jpg" alt="A lovely selfie by the water" loading="lazy" />
+            <figcaption>By the water, with you</figcaption>
+          </figure>
+
+          <figure class="memory-tile memory-stagger" data-caption="Our wedding day will always be one of the most special moments of my life.">
+            <img src="photo2.jpg" alt="Wedding photo of Pranavati and partner" loading="lazy" />
+            <figcaption>Our wedding, forever special</figcaption>
+          </figure>
+
+          <figure class="memory-tile memory-stagger" data-caption="Color, laughter, and love in one frame.">
+            <img src="photo3.jpg" alt="Couple selfie during Holi celebration" loading="lazy" />
+            <figcaption>Holi and happiness</figcaption>
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Photo preview">
+      <button id="closeLightbox" class="close-lightbox" aria-label="Close photo preview">Close</button>
+      <img id="lightboxImage" src="" alt="" />
+      <p id="lightboxCaption"></p>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
