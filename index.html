@@ -16,9 +16,16 @@
     <meta name="twitter:title" content="Happy Valentine's Day, Pranavati" />
     <meta name="twitter:description" content="A small surprise made with love." />
     <meta name="twitter:image" content="https://parshurampatil197.github.io/valentine-pranavati/photo2.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Manrope:wght@400;500;700&family=Playfair+Display:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="bg-noise" aria-hidden="true"></div>
     <div class="bg-glow glow-one" aria-hidden="true"></div>
     <div class="bg-glow glow-two" aria-hidden="true"></div>
     <div id="floating-hearts" aria-hidden="true"></div>
@@ -26,10 +33,16 @@
     <main class="shell">
       <section class="hero card fade-in">
         <p class="eyebrow">A Small Surprise</p>
-        <h1>Happy Valentine's Day, Pranavati</h1>
+        <h1>Happy Valentine's Day</h1>
+        <p class="hero-name">Pranavati</p>
         <p class="intro">
           Every day with you is my favorite day. This little page is only for you.
         </p>
+        <div class="hero-pills">
+          <span class="pill">Forever Team</span>
+          <span class="pill">Best Memories</span>
+          <span class="pill">Only Love</span>
+        </div>
         <p class="valentine-question">Will you be my Valentine?</p>
         <div class="actions" id="choiceArea">
           <button id="openMessage" class="btn btn-primary">Yes</button>
@@ -38,7 +51,8 @@
       </section>
 
       <section id="messageSection" class="card message hidden">
-        <h2>My Note To You</h2>
+        <h2>To My Forever Love</h2>
+        <p class="section-intro">A little note from my heart to yours.</p>
         <div id="typedLines" class="typed-lines"></div>
 
         <div class="reasons">
@@ -64,9 +78,14 @@
         <p class="memory-intro">Tap any photo to see it in full view.</p>
 
         <div class="memory-grid">
+          <figure class="memory-tile memory-stagger" data-caption="My forever valentine, always and forever.">
+            <img src="My Valentine.jpeg" alt="My Valentine photo" loading="lazy" />
+            <figcaption>My Valentine</figcaption>
+          </figure>
+
           <figure class="memory-tile memory-stagger" data-caption="Your smile + my peace = my favorite moment.">
             <img src="photo1.jpg" alt="A lovely selfie by the water" loading="lazy" />
-            <figcaption>Holi and Happiness</figcaption>
+            <figcaption>First Holi</figcaption>
           </figure>
 
           <figure class="memory-tile memory-stagger" data-caption="Our wedding day will always be one of the most special moments of my life.">
@@ -78,6 +97,26 @@
             <img src="photo3.jpg" alt="Couple selfie during Holi celebration" loading="lazy" />
             <figcaption>By the water, with you</figcaption>
           </figure>
+
+          <figure class="memory-tile memory-stagger" data-caption="Celebrating your special day is always my favorite thing.">
+            <img src="First Birthday celebration.jpeg" alt="First birthday celebration memory" loading="lazy" />
+            <figcaption>First Birthday Celebration</figcaption>
+          </figure>
+
+          <figure class="memory-tile memory-stagger" data-caption="Our first Diwali together filled with light and love.">
+            <img src="first Diwali.jpeg" alt="First Diwali memory together" loading="lazy" />
+            <figcaption>First Diwali</figcaption>
+          </figure>
+
+          <figure class="memory-tile memory-stagger" data-caption="Our first Makar Sankrant together, colorful and unforgettable.">
+            <img src="First Makar sankrant.jpeg" alt="First Makar Sankrant celebration memory" loading="lazy" />
+            <figcaption>First Makar Sankrant</figcaption>
+          </figure>
+
+          <figure class="memory-tile memory-stagger" data-caption="Just you and me, my forever favorite place.">
+            <img src="you and me.jpeg" alt="You and me together" loading="lazy" />
+            <figcaption>You and Me</figcaption>
+          </figure>
         </div>
       </section>
     </main>
@@ -87,6 +126,13 @@
       <img id="lightboxImage" src="" alt="" />
       <p id="lightboxCaption"></p>
     </div>
+
+    <audio id="yesSong" preload="metadata" loop>
+      <source src="Raabta Kehte Hain Khuda Ne Agent Vinod 128 Kbps.mp3" type="audio/mpeg" />
+    </audio>
+    <audio id="noSong" preload="metadata">
+      <source src="Paagal Badshah 128 Kbps.mp3" type="audio/mpeg" />
+    </audio>
 
     <script src="script.js"></script>
   </body>

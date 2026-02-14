@@ -5,6 +5,8 @@ const messageSection = document.getElementById("messageSection");
 const memorySection = document.getElementById("memorySection");
 const typedLines = document.getElementById("typedLines");
 const heartsRoot = document.getElementById("floating-hearts");
+const yesSong = document.getElementById("yesSong");
+const noSong = document.getElementById("noSong");
 const memoryCards = document.querySelectorAll(".memory-stagger");
 const lightbox = document.getElementById("lightbox");
 const lightboxImage = document.getElementById("lightboxImage");
@@ -23,6 +25,7 @@ let started = false;
 openMessageBtn.addEventListener("click", async () => {
   if (started) return;
   started = true;
+  playYesSong();
   launchLoveExplosion();
 
   messageSection.classList.remove("hidden");
@@ -45,9 +48,16 @@ openMessageBtn.addEventListener("click", async () => {
 if (noBtn && choiceArea) {
   noBtn.addEventListener("mouseenter", moveNoButton);
   noBtn.addEventListener("focus", moveNoButton);
-  noBtn.addEventListener("click", moveNoButton);
-  noBtn.addEventListener("pointerdown", moveNoButton);
-  noBtn.addEventListener("touchstart", moveNoButton, { passive: false });
+  if (window.PointerEvent) {
+    noBtn.addEventListener("pointerdown", handleNoAttempt);
+  } else {
+    noBtn.addEventListener("touchstart", handleNoAttempt, { passive: false });
+  }
+  noBtn.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      handleNoAttempt(event);
+    }
+  });
 }
 
 memoryCards.forEach((card) => {
@@ -83,7 +93,7 @@ function closeLightbox() {
 }
 
 function moveNoButton(event) {
-  event.preventDefault();
+  if (event) event.preventDefault();
   if (!noBtn || !choiceArea) return;
 
   const areaRect = choiceArea.getBoundingClientRect();
@@ -110,6 +120,11 @@ function moveNoButton(event) {
   noBtn.style.top = `${nextY}px`;
 }
 
+function handleNoAttempt(event) {
+  playNoSong();
+  moveNoButton(event);
+}
+
 function typeLine(text) {
   const p = document.createElement("p");
   p.className = "typed-line";
@@ -132,6 +147,31 @@ function revealMemoryCards() {
       card.classList.add("visible");
     }, 230 * index);
   });
+}
+
+function playYesSong() {
+  if (!yesSong) return;
+  if (noSong) {
+    noSong.pause();
+    noSong.currentTime = 0;
+  }
+  playSong(yesSong);
+}
+
+function playNoSong() {
+  if (!noSong) return;
+  if (yesSong) {
+    yesSong.pause();
+  }
+  noSong.currentTime = 0;
+  playSong(noSong);
+}
+
+function playSong(audio) {
+  const maybePromise = audio.play();
+  if (maybePromise && typeof maybePromise.catch === "function") {
+    maybePromise.catch(() => {});
+  }
 }
 
 function launchLoveExplosion() {
